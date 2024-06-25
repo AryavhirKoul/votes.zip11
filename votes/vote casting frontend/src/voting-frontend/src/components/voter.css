@@ -1,0 +1,200 @@
+/* voter.css */
+
+.voter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust as needed */
+    background-image: url('6.jpeg');
+    background-size: cover; /* Adjust as needed */
+    background-position: center;
+  }
+  
+  .voter-title {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .party-select {
+    margin-bottom: 20px;
+  }
+  
+  .scene {
+    width: 10em;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .cube {
+    color: #e6e2e2;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.85s cubic-bezier(.17,.67,.14,.93);
+    transform-style: preserve-3d;
+    transform-origin: 100% 50%;
+    width: 10em;
+    height: 4em;
+   }
+   
+   .cube:hover {
+    transform: rotateX(-90deg);
+   }
+   
+   .side {
+    box-sizing: border-box;
+    position: absolute;
+    display: inline-block;
+    height: 4em;
+    width: 10em;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 1.5em;
+    font-weight: bold;
+   }
+   
+   .top {
+    background: rgb(59, 150, 101);
+    color: #222229;
+    transform: rotateX(90deg) translate3d(0, 0, 2em);
+    box-shadow: inset 0 0 0 5px #fff;
+   }
+   
+   .front {
+    background: #222229;
+    color: #fff;
+    box-shadow: inset 0 0 0 5px #fff;
+    transform: translate3d(0, 0, 2em);
+   }
+  
+  .vote-button:hover {
+    background-color: #45a049; /* Darker Green */
+  }
+  /* voter.css */
+
+
+  
+  .select-wrapper::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+  
+  /* Styling the select element */
+  .party-select select {
+    appearance: none; /* Hide default arrow on some browsers */
+    background-color: #f8f9fa; /* Light gray background color */
+    border: 2px solid #ced4da; /* Gray border */
+    padding: 8px 15px; /* Padding */
+    font-size: 16px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor */
+    width: 100%; /* Full width */
+  }
+  
+  .party-select select:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #4CAF50; /* Green border color on focus */
+  }
+  .container {
+    --s: 1em; /* control the size */
+    --g: 10px; /* the gap */
+    --c: #009688; /* the active color */
+  
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: var(--g);
+    position: relative;
+  }
+  .container:before {
+    content: "";
+    position: absolute;
+    height: calc(var(--s) / 2);
+    left: calc(var(--s) / 4 + var(--_x, 0px));
+    top: calc(var(--s) / 4);
+    background: var(--c);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    transition: 0.4s, left cubic-bezier(0.1, -2000, 0.7, -2000) 0.4s;
+  }
+  .container label {
+    display: inline-flex;
+    line-height: var(--s);
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .container input {
+    height: var(--s);
+    aspect-ratio: 1;
+    border: calc(var(--s) / 8) solid var(--_c, #939393);
+    border-radius: 50%;
+    outline-offset: calc(var(--s) / 10);
+    padding: calc(var(--s) / 8);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    font-size: inherit;
+    margin: 0;
+    transition: 0.3s;
+  }
+  .container input:checked {
+    --_c: var(--c);
+  }
+  .container:not(:has(input:checked)):before {
+    --_i: -1;
+    opacity: 0;
+  }
+  .container:has(input:checked):before {
+    opacity: 1;
+    transform: translateY(calc(var(--_i) * (var(--s) + var(--g))));
+  }
+  .container:has(label:nth-child(1) input:checked):before {
+    --_i: 0;
+    --_x: 0.02px;
+  }
+  .container:has(label:nth-child(2) input:checked):before {
+    --_i: 1;
+    --_x: 0.04px;
+  }
+  .container:has(label:nth-child(3) input:checked):before {
+    --_i: 2;
+    --_x: 0.06px;
+  }
+  .container:has(label:nth-child(4) input:checked):before {
+    --_i: 3;
+    --_x: 0.08px;
+  }
+  .container:has(label:nth-child(5) input:checked):before {
+    --_i: 4;
+    --_x: 0.1px;
+  }
+  /* and so on ..*/
+  
+  .container input:disabled {
+    background: linear-gradient(#939393 0 0) 50%/100% 20% no-repeat content-box;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  @media print {
+    input[type="radio"] {
+      -webkit-appearance: auto;
+      -moz-appearance: auto;
+      appearance: auto;
+      background: none;
+    }
+  }
+  @supports not selector(:has(*)) {
+    .container:before {
+      display: none;
+    }
+    .container input:checked {
+      --_c: var(--c);
+      background: var(--c) content-box;
+    }
+  }
+  
